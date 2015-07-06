@@ -56,6 +56,7 @@ showError (TypeMismatch expected found) = "Invalid type: expected " ++ expected
 showError (Parser parseErr)             = "Parse error at " ++ show parseErr
 
 -- actionがRightなら(return . show)をactionに適用し、Leftならそのまま返却.
+trapError :: ThrowsError String -> ThrowsError String
 trapError action = catchError action (return . show)
 
 -- ThrowsErrorからRight値取り出し.
